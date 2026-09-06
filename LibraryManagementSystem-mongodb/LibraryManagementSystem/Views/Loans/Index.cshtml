@@ -1,0 +1,68 @@
+@model List<Loan>
+<div class="page-header">
+    <h1 style="width: 100%; text-align: center;">Loans</h1>
+</div>
+
+@if (Model.Count == 0)
+{
+    <div class="empty">No loans yet.</div>
+}
+else
+{
+    <table>
+        <thead>
+            <tr>
+                <th>Book</th>
+                <th>Member</th>
+                <th>Loan Date</th>
+                <th>Due Date</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var loan in Model)
+        {
+            bool overdue = loan.ReturnDate == null &&
+                           loan.LoanDate.AddDays(14) < DateTime.Today;
+
+            <tr>
+                <td>@loan.Book?.Title</td>
+                <td>@loan.Member?.Name</td>
+                <td>@loan.LoanDate.ToShortDateString()</td>
+                <td>@loan.LoanDate.AddDays(14).ToShortDateString()</td>
+                <td>
+                    @if (loan.ReturnDate != null)
+                    {
+                        <span class="available">Returned</span>
+                    }
+                    else if (overdue)
+                    {
+                        <span class="overdue">OVERDUE</span>
+                    }
+                    else
+                    {
+                        <span class="borrowed">Borrowed</span>
+                    }
+                </td>
+                <td>
+                    @if (loan.ReturnDate == null)
+                    {
+                        <form asp-action="Return" method="post">
+                            <input type="hidden" name="id" value="@loan.Id" />
+                            <button class="small-button" type="submit">Return</button>
+                        </form>
+                    }
+                    else
+                    {
+                        <span>@loan.ReturnDate.Value.ToShortDateString()</span>
+                    }
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+<br />
+<a class="button" asp-action="Create">+ Borrow Book</a>
+

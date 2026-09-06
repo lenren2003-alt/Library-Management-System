@@ -1,0 +1,14 @@
+@model Book
+<div style="width: 450px; margin: 50px auto; padding: 30px; background: white; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.15);">
+
+<div class="form-card">
+    <h1>Delete Book</h1>
+    <p>Are you sure you want to delete <b>@Model.Title</b>?</p>
+
+    <form asp-action="Delete" method="post">
+        <input type="hidden" asp-for="Id" />
+        <button class="button danger-bg" type="submit">Yes, Delete</button>
+        <a class="cancel" asp-action="Index">Cancel</a>
+    </form>
+</div>
+</div>

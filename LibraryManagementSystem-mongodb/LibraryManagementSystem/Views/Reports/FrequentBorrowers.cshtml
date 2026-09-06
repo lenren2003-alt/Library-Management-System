@@ -1,0 +1,83 @@
+@model List<FrequentBorrowerViewModel>
+
+<div class="page-header">
+    <h1 style="width: 100%; text-align: center;">Frequent Borrowers</h1>
+    <a class="button" asp-action="Index">←</a>
+
+</div>
+
+@if (Model.Count == 0)
+{
+    <div class="empty">No loans have been recorded yet.</div>
+}
+else
+{
+    <div style="display: flex; justify-content: center; align-items: flex-end; gap: 18px; margin-bottom: 25px; flex-wrap: wrap;">
+
+        @if (Model.Count > 1)
+        {
+            var second = Model[1];
+            <div class="card" style="min-width: 180px; text-align: center;">
+                <p style="margin: 0; color: #6b7280; font-weight: bold;"> #2</p>
+                <h3 style="margin: 8px 0 4px;">@second.Name</h3>
+                <p style="margin: 0 0 4px; color: #555; font-size: 13px;">@second.Email</p>
+                <p style="margin: 0; font-size: 18px; font-weight: bold; color: #243b53;">
+                    @second.BorrowCount book@(second.BorrowCount == 1 ? "" : "s")
+                </p>
+            </div>
+        }
+
+        @{
+            var top = Model[0];
+        }
+        <div class="card" style="min-width: 240px; text-align: center; transform: scale(1.15); box-shadow: 0 6px 20px #0000001f; z-index: 1;">
+            <p style="margin: 0; color: #6b7280; font-weight: bold;"> #1 Top Borrower</p>
+            <h2 style="margin: 8px 0 4px; font-size: 26px;">@top.Name</h2>
+            <p style="margin: 0 0 4px; color: #555;">@top.Email</p>
+            <p style="margin: 0; font-size: 24px; font-weight: bold; color: #243b53;">
+                @top.BorrowCount book@(top.BorrowCount == 1 ? "" : "s") borrowed
+            </p>
+        </div>
+
+        @if (Model.Count > 2)
+        {
+            var third = Model[2];
+            <div class="card" style="min-width: 180px; text-align: center;">
+                <p style="margin: 0; color: #6b7280; font-weight: bold;"> #3</p>
+                <h3 style="margin: 8px 0 4px;">@third.Name</h3>
+                <p style="margin: 0 0 4px; color: #555; font-size: 13px;">@third.Email</p>
+                <p style="margin: 0; font-size: 18px; font-weight: bold; color: #243b53;">
+                    @third.BorrowCount book@(third.BorrowCount == 1 ? "" : "s")
+                </p>
+            </div>
+        }
+
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Member</th>
+                <th>Email</th>
+                <th>Books Borrowed</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                int rank = 1;
+            }
+            @foreach (var member in Model)
+            {
+                <tr>
+                    <td>@rank</td>
+                    <td>@member.Name</td>
+                    <td>@member.Email</td>
+                    <td>@member.BorrowCount</td>
+                </tr>
+                rank++;
+            }
+        </tbody>
+    </table>
+}
+

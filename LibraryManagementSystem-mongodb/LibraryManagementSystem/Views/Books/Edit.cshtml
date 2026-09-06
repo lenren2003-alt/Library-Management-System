@@ -1,0 +1,24 @@
+@model Book
+<div style="width: 450px; margin: 50px auto; padding: 30px; background: white; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.15);">
+
+<h1>Edit Book</h1>
+
+<form asp-action="Edit" method="post" class="form-card">
+    <input type="hidden" asp-for="Id" />
+    <input type="hidden" asp-for="IsAvailable" />
+
+    <div asp-validation-summary="ModelOnly" class="validation"></div>
+
+    <label asp-for="Title">Title</label>
+    <input asp-for="Title" />
+
+    <label asp-for="Author">Author</label>
+    <input asp-for="Author" />
+
+    <label asp-for="ISBN">ISBN</label>
+    <input asp-for="ISBN" />
+
+    <button class="button" type="submit">Save Changes</button>
+    <a class="cancel" asp-action="Index">Cancel</a>
+</form>
+</div>

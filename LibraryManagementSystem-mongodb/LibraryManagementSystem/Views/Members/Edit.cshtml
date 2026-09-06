@@ -1,0 +1,21 @@
+@model Member
+<div style="width: 450px; margin: 50px auto; padding: 30px; background: white; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.15);">
+
+<h1>Edit Member</h1>
+
+<form asp-action="Edit" method="post" class="form-card">
+    <input type="hidden" asp-for="Id" />
+
+    <label asp-for="Name">Name</label>
+    <input asp-for="Name" />
+
+    <label asp-for="Email">Email</label>
+    <input asp-for="Email" type="email" />
+
+    <label asp-for="Phone">Phone</label>
+    <input asp-for="Phone" />
+
+    <button class="button" type="submit">Save Changes</button>
+    <a class="cancel" asp-action="Index">Cancel</a>
+</form>
+</div>

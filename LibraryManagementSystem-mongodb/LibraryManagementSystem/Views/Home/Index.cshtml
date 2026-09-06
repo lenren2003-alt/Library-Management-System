@@ -1,0 +1,41 @@
+<div class="hero">
+    <h1>Library Management System</h1>
+    <p>Manage books, members, and loans easily.</p>
+</div>
+
+<div class="cards">
+    <div class="card">
+        <h2>@ViewBag.BookCount</h2>
+        <p>Total Books</p>
+        <a class="button" asp-controller="Books" asp-action="Index">View Books</a>
+    </div>
+
+    <div class="card">
+        <h2>@ViewBag.MemberCount</h2>
+        <p>Members</p>
+        <a class="button" asp-controller="Members" asp-action="Index">View Members</a>
+    </div>
+
+    <div class="card">
+        <h2>@ViewBag.ActiveLoans</h2>
+        <p>Active Loans</p>
+        <a class="button" asp-controller="Loans" asp-action="Index">View Loans</a>
+    </div>
+
+    <div class="card overdue-card">
+        <h2>@ViewBag.OverdueLoans</h2>
+        <p>Overdue Loans</p>
+        <a class="button" asp-controller="Reports" asp-action="Overdue">Check Loans</a>
+    </div>
+</div>
+
+<div class="info">
+    <h2>How it works</h2>
+    <ol>
+        <li>Add books in <b>Books</b>.</li>
+        <li>Register people in Members</li>
+        <li>Use <b>Loans to Borrow Book</b> (when someone borrows a book).</li>
+        <li>Use <b>Return</b> when the book comes back.</li>
+        <li>A loan becomes overdue once its due date has passed.</li>
+    </ol>
+</div>

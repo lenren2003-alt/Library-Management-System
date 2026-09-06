@@ -1,0 +1,55 @@
+@{
+    var books = ViewBag.Books as List<Book> ?? new List<Book>();
+    var members = ViewBag.Members as List<Member> ?? new List<Member>();
+}
+
+<div style="width: 400px; margin: 50px auto; text-align: center;">
+    <h1 style="text-align:center">Borrow a Book</h1>
+
+    @if (books.Count == 0)
+    {
+        <div class="alert">
+            There are no available books. Add a book or return a borrowed book first.
+        </div>
+    }
+    else if (members.Count == 0)
+    {
+        <div class="alert">
+            There are no registered members. Register a member first.
+        </div>
+    }
+    else
+    {
+        <form asp-action="Create" method="post" class="form-card">
+
+            <label for="bookId">Book</label>
+            <select name="bookId" id="bookId" required>
+                <option value="">-- Select a book --</option>
+
+                @foreach (var book in books)
+                {
+                    <option value="@book.Id">
+                        @book.Title - @book.Author
+                    </option>
+                }
+            </select>
+
+            <label for="memberId">Member</label>
+            <select name="memberId" id="memberId" required>
+                <option value="">-- Select a member --</option>
+
+                @foreach (var member in members)
+                {
+                    <option value="@member.Id">
+                        @member.Name - @member.Email
+                    </option>
+                }
+            </select>
+
+            <button class="button" type="submit">Borrow Book</button>
+
+            <a class="cancel" asp-action="Index">Cancel</a>
+
+        </form>
+    }
+</div>

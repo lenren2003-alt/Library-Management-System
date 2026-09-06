@@ -1,0 +1,23 @@
+<div class="page-header">
+    <h1 style="text-align:center">Reports</h1>
+</div>
+
+<div class="cards reports-cards">
+    <div class="card overdue-card">
+        <h2>@ViewBag.OverdueCount</h2>
+        <p>Overdue Loans</p>
+        <a class="button" asp-action="Overdue">View &amp; Notify</a>
+    </div>
+
+    <div class="card">
+        <h2>📈</h2>
+        <p>Popular Books</p>
+        <a class="button" asp-action="PopularBooks">View Report</a>
+    </div>
+
+    <div class="card">
+        <h2>👤</h2>
+        <p>Frequent Borrowers</p>
+        <a class="button" asp-action="FrequentBorrowers">View Report</a>
+    </div>
+</div>
